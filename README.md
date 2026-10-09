@@ -58,3 +58,26 @@ docker compose ps
 ```
 
 The app is then reachable at [http://localhost:8080](http://localhost:8080).
+
+## Testing the API
+
+```bash
+# List all customers
+curl http://localhost:8080/customers
+
+# Create a customer
+curl -X POST http://localhost:8080/customers \
+  -H "Content-Type: application/json" \
+  -d '{"firstName":"Tony","lastName":"Stark","email":"tony@starkindustries.com","contactNo":"55566677","jobTitle":"CEO","yearOfBirth":1980}'
+
+# Read one customer (replace {id} with the id from the create response)
+curl http://localhost:8080/customers/{id}
+
+# Update a customer
+curl -X PUT http://localhost:8080/customers/{id} \
+  -H "Content-Type: application/json" \
+  -d '{"firstName":"Tony","lastName":"Stark","email":"ironman@starkindustries.com","contactNo":"55566677","jobTitle":"Superhero CEO","yearOfBirth":1980}'
+
+# Delete a customer
+curl -X DELETE http://localhost:8080/customers/{id}
+```
