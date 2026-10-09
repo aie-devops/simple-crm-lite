@@ -1,0 +1,26 @@
+info:
+  name: Add another new customer
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}"
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "Natasha",
+        "lastName": "Romanoff",
+        "email": "natasha@shield.gov",
+        "contactNo": "44455566",
+        "jobTitle": "Agent",
+        "yearOfBirth": 1985
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

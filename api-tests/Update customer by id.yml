@@ -1,0 +1,26 @@
+info:
+  name: Update customer by id
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/4"
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "Tony",
+        "lastName": "Stark",
+        "email": "ironman@starkindustries.com",
+        "contactNo": "55566677",
+        "jobTitle": "Superhero CEO",
+        "yearOfBirth": 1980
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
