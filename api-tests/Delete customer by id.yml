@@ -5,8 +5,14 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseUrl}}/4"
+  url: "{{baseUrl}}/customers/{{customerId}}"
   auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "204"
 
 settings:
   encodeUrl: true

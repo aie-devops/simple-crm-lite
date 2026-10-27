@@ -1,11 +1,11 @@
 info:
   name: Add another new customer
   type: http
-  seq: 6
+  seq: 7
 
 http:
   method: POST
-  url: "{{baseUrl}}"
+  url: "{{baseUrl}}/customers"
   body:
     type: json
     data: |-
@@ -18,6 +18,19 @@ http:
         "yearOfBirth": 1985
       }
   auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+  scripts:
+    - type: tests
+      code: |-
+        test("returns Natasha with an id", function() {
+          expect(res.body.id).to.be.a("number");
+          expect(res.body.firstName).to.equal("Natasha");
+        });
 
 settings:
   encodeUrl: true

@@ -5,8 +5,21 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/4"
+  url: "{{baseUrl}}/customers/{{customerId}}"
   auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+  scripts:
+    - type: tests
+      code: |-
+        test("returns the customer that was just added", function() {
+          expect(res.body.id).to.equal(bru.getVar("customerId"));
+          expect(res.body.lastName).to.equal("Doe");
+        });
 
 settings:
   encodeUrl: true

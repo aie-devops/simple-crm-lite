@@ -1,0 +1,5 @@
+name: prod
+variables:
+  # Live service on Render (no trailing slash)
+  - name: baseUrl
+    value: https://simple-crm-lite-xxxx.onrender.com

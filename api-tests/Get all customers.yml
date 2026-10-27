@@ -5,8 +5,20 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}"
+  url: "{{baseUrl}}/customers"
   auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+  scripts:
+    - type: tests
+      code: |-
+        test("returns a list of customers", function() {
+          expect(res.body).to.be.an("array");
+        });
 
 settings:
   encodeUrl: true

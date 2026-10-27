@@ -5,10 +5,10 @@ info:
 
 http:
   method: POST
-  url: "{{baseUrl}}"
+  url: "{{baseUrl}}/customers"
   body:
     type: json
-    data: |
+    data: |-
       {
         "firstName": "John",
         "lastName": "Doe",
@@ -19,9 +19,26 @@ http:
       }
   auth: inherit
 
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+  scripts:
+    - type: after-response
+      code: |-
+        // Save the new customer's id for the next requests
+        bru.setVar("customerId", res.body.id);
+    - type: tests
+      code: |-
+        test("returns the new customer with an id", function() {
+          expect(res.body.id).to.be.a("number");
+          expect(res.body.firstName).to.equal("John");
+          expect(res.body.email).to.equal("john@doe.com");
+        });
+
 settings:
   encodeUrl: true
   timeout: 0
   followRedirects: true
   maxRedirects: 5
-  forwardAuthorizationHeader: true
