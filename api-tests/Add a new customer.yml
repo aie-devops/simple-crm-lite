@@ -10,11 +10,11 @@ http:
     type: json
     data: |
       {
-        "firstName": "Tony",
-        "lastName": "Stark",
-        "email": "tony@starkindustries.com",
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john@doe.com",
         "contactNo": "55566677",
-        "jobTitle": "CEO",
+        "jobTitle": "Boss",
         "yearOfBirth": 1980
       }
   auth: inherit
@@ -24,3 +24,4 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+  forwardAuthorizationHeader: true

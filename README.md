@@ -81,3 +81,21 @@ curl -X PUT http://localhost:8080/customers/{id} \
 # Delete a customer
 curl -X DELETE http://localhost:8080/customers/{id}
 ```
+
+## Data Persistence
+
+PostgreSQL data lives in the named volume `postgres-data`, not in the container, so it survives container removal:
+
+```bash
+# Removes containers and network, but keeps the volume (data is safe)
+docker compose down
+
+# Restart - same data is still there
+docker compose up -d
+
+# Query the database directly to confirm
+docker compose exec db psql -U postgres -d simplecrmlite \
+  -c "SELECT id, first_name, last_name FROM customer ORDER BY id;"
+```
+
+**Warning:** `docker compose down -v` also deletes the volume, permanently erasing the data. Never use `-v` on data you need to keep.

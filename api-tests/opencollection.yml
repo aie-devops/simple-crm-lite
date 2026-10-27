@@ -17,7 +17,7 @@ config:
 request:
   variables:
     - name: baseUrl
-      value: http://localhost:8080/customers
+      value: https://simple-crm-lite-production.up.railway.app/customers
 bundled: false
 extensions:
   bruno:
